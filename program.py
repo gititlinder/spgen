@@ -1,3 +1,14 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+__author__ = "Steve Linder"
+__copyright__ = "Copyright 2018"
+__license__ = "GPL"
+__version__ = "1.0.0"
+__maintainer__ = "Steve Linder"
+__email__ = "sdl96@hotmail.com"
+__status__ = "Production"
+
 import openpyxl
 import datetime
 import PySimpleGUI as sg
