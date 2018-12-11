@@ -4,7 +4,7 @@
 __author__ = "Steve Linder"
 __copyright__ = "Copyright 2018"
 __license__ = "GPL"
-__version__ = "1.0.3"
+__version__ = "1.0.4"
 __maintainer__ = "Steve Linder"
 __email__ = "sdl96@hotmail.com"
 __status__ = "Production"
@@ -13,6 +13,11 @@ import openpyxl
 import datetime
 import PySimpleGUI as sg
 
+
+# todo add a menu sysytem
+# todo convert file
+# todo error check
+# todo flask
 
 def open_file(source_filename):
     wb = openpyxl.load_workbook(source_filename)
@@ -203,18 +208,42 @@ def build_su(database, spname, keyname, where1, where2, where3, where4, tablenam
 
 
 def main():
-    layout = [[sg.Text('Open Template')],
-              [sg.InputText(), sg.FileBrowse()],
-              [sg.Submit(), sg.Cancel()]]
+    sg.SetOptions(element_padding=(0, 0))
 
-    (event, (source_filename,)) = sg.Window('Open').Layout(layout).Read()
+    menu_def = [['&File', ['&Open', '&Convert', 'E&xit']],
+                ['&Help', '&About...'], ]
 
-    if source_filename:
-        open_file(source_filename)
-    else:
-        sg.Popup("Cancel", "No filename supplied")
-        raise SystemExit("Cancelling: no filename supplied")
-    sg.Popup('Results', 'Import Successful')
+    layout = [
+        [sg.Menu(menu_def, tearoff=False, pad=(20, 1))],
+        [sg.Output(size=(60, 20))],
+    ]
+
+    window = sg.Window("Stored Procedure Generator",
+                       default_element_size=(12, 1),
+                       auto_size_text=False,
+                       auto_size_buttons=False,
+                       default_button_element_size=(12, 1)).Layout(layout)
+
+    # ------ Loop & Process button menu choices ------ #
+    while True:
+        event, values = window.Read()
+        if event is None or event == 'Exit':
+            return
+        # ------ Process menu choices ------ #
+        if event == 'About...':
+            window.Disappear()
+            sg.Popup('Stored Procedure Generator', 'Open - Open Template to Convert',
+                     'Convert - Convert legacy text file to template', grab_anywhere=True)
+            window.Reappear()
+        elif event == 'Convert':
+            print('convert')
+        elif event == 'Open':
+            source_filename = sg.PopupGetFile('File to open', no_window=True)
+            if source_filename:
+                open_file(source_filename)
+                print(source_filename, '\nConverted')
+            else:
+                sg.Popup("Cancel", "No filename supplied")
 
 
 if __name__ == '__main__':
