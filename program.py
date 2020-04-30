@@ -14,6 +14,7 @@ import datetime
 import PySimpleGUI as sg
 
 
+# todo document
 # todo add a menu sysytem
 # todo convert file
 # todo error check
@@ -243,7 +244,7 @@ def main():
                 open_file(source_filename)
                 print(source_filename, '\nConverted')
             else:
-                sg.Popup("Cancel", "No filename supplied")
+                sg.Popup("Cancel", "No filename supplied!")
 
 
 if __name__ == '__main__':
