@@ -4,7 +4,7 @@
 __author__ = "Steve Linder"
 __copyright__ = "Copyright 2020"
 __license__ = "GPL"
-__version__ = "1.0.5"
+__version__ = "1.0.6"
 __maintainer__ = "Steve Linder"
 __email__ = "sdl96@hotmail.com"
 __status__ = "Production"
