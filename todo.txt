@@ -1,6 +1,6 @@
--Git branch process
+-remove todo.txt from gititlinder
 -get template and setup
 -test with loads2
 -set up venv with git
 -run git in pycharm
--git Test a branch and merge
+
